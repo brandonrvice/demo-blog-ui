@@ -1,11 +1,15 @@
 import React from "react";
-import articles from "./article-content";
+import articleService from "../data/ArticleService";
+import ArticlesList from "../components/ArticlesList";
+import NotFoundPage from "./NotFoundPage";
 
 const ArticlePage = ({ match }) => {
-  const { name } = match.params;
-  const article = articles.find(p => p.name === name);
+  const { id } = match.params;
+  const articles = articleService.getArticles();
+  const article = articles.find(p => p.id === id);
+  if (!article) return <NotFoundPage />;
 
-  if (!article) return <h1>Article does not exist!</h1>;
+  const relatedArticles = articleService.getArticlesFromIds(article.related);
 
   return (
     <>
@@ -16,6 +20,8 @@ const ArticlePage = ({ match }) => {
           <br />
         </div>
       ))}
+      <h3>Related Articles:</h3>
+      <ArticlesList articles={relatedArticles} />
     </>
   );
 };
