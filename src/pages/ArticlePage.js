@@ -14,12 +14,8 @@ const ArticlePage = ({ match }) => {
       const articleData = await articleService.getArticleAsync(id);
       if (articleData !== undefined) {
         setArticle(articleData);
-        const relatedArticles = [];
-        for (let articleId of articleData.related) {
-          const relatedArticleData = await articleService.getArticleAsync(articleId);
-          relatedArticles.push(relatedArticleData);
-        }
-        setRelatedArticles(relatedArticles);
+        const related = await articleService.getArticlesFromIdsAsync(articleData.related);
+        setRelatedArticles(related);
       } else {
         setNotFound(true);
       }
@@ -30,7 +26,6 @@ const ArticlePage = ({ match }) => {
     return <NotFoundPage />;
   }
 
-  // if (!article) return <NotFoundPage />;
   if (article) {
     return (
       <>
