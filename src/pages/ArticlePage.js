@@ -1,15 +1,27 @@
-import React from "react";
-import articleService from "../data/ArticleService";
+import React, { useState, useEffect } from "react";
+import articleService from "../services/ArticleService";
 import ArticlesList from "../components/ArticlesList";
 import NotFoundPage from "./NotFoundPage";
 
 const ArticlePage = ({ match }) => {
+  const [article, setArticle] = useState(null);
+  const [relatedArticles, setRelatedArticles] = useState([]);
   const { id } = match.params;
-  const articles = articleService.getArticles();
-  const article = articles.find(p => p.id === id);
-  if (!article) return <NotFoundPage />;
 
-  const relatedArticles = articleService.getArticlesFromIds(article.related);
+  useEffect(() => {
+    (async () => {
+      const articleData = await articleService.getArticleAsync(id);
+      setArticle(articleData);
+      const relatedArticles = [];
+      for (let articleId of articleData.related) {
+        const relatedArticleData = await articleService.getArticleAsync(articleId);
+        relatedArticles.push(relatedArticleData);
+      }
+      setRelatedArticles(relatedArticles);
+    })();
+  }, [id]);
+
+  if (!article) return <NotFoundPage />;
 
   return (
     <>

@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ArticlesList from "../components/ArticlesList";
-import articles from "../pages/article-content";
+import articleService from "../services/ArticleService";
 
-const ArticlesListPage = () => (
-  <>
-    <h1>Articles Page</h1>
-    <ArticlesList articles={articles} />
-  </>
-);
+const ArticlesListPage = () => {
+  const [articleList, setArticles] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await articleService.getArticlesAsync();
+      setArticles(data);
+    })();
+  }, []);
+
+  return (
+    <>
+      <h1>Articles Page</h1>
+      <ArticlesList articles={articleList} />
+    </>
+  );
+};
 
 export default ArticlesListPage;
