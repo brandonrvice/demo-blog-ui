@@ -8,8 +8,13 @@ articleService.getArticlesAsync = async () => {
 };
 
 articleService.getArticleAsync = async id => {
-  let res = await axios.get(`http://localhost:8000/api/article/${id}`);
-  return res.data;
+  try {
+    let res = await axios.get(`http://localhost:8000/api/article/${id}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return undefined;
+  }
 };
 
 export default articleService;
