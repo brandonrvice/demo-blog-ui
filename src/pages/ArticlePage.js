@@ -44,8 +44,10 @@ const ArticlePage = ({ match }) => {
         ))}
         <CommentsList comments={comments} />
         <AddCommentsForm id={article.id} setComments={setComments} />
+        <br />
         <h3>Related Articles</h3>
         <ArticlesList articles={relatedArticles} />
+        <br />
       </>
     );
   } else {

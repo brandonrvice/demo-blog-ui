@@ -16,6 +16,7 @@ const ArticlesListPage = () => {
     <>
       <h1>Articles</h1>
       <ArticlesList articles={articleList} />
+      <br />
     </>
   );
 };
