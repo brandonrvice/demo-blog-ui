@@ -3,14 +3,14 @@ import React from "react";
 const HomePage = () => (
   <>
     <h1>Welcome to my Blog!</h1>
-    <p>
+    <p className={"lead"}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
       non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </p>
-    <p>
+    <p className={"lead"}>
       Velit sed ullamcorper morbi tincidunt ornare massa. Cursus metus aliquam eleifend mi in nulla.
       Quam viverra orci sagittis eu volutpat odio. Gravida in fermentum et sollicitudin ac orci
       phasellus. Sollicitudin tempor id eu nisl. Eu scelerisque felis imperdiet proin fermentum leo

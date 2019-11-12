@@ -14,7 +14,7 @@ const ArticlesListPage = () => {
 
   return (
     <>
-      <h1>Articles Page</h1>
+      <h1>Articles</h1>
       <ArticlesList articles={articleList} />
     </>
   );

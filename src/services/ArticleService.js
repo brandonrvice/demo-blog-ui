@@ -12,6 +12,11 @@ articleService.getArticlesFromIdsAsync = async ids => {
   return res.data;
 };
 
+articleService.upvote = async id => {
+  let res = await axios.post(`http://localhost:8000/api/article/${id}/upvote`);
+  return res.data;
+};
+
 articleService.getArticleAsync = async id => {
   try {
     let res = await axios.get(`http://localhost:8000/api/article/${id}`);
