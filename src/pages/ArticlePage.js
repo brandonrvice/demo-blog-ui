@@ -4,9 +4,11 @@ import ArticlesList from "../components/ArticlesList";
 import NotFoundPage from "./NotFoundPage";
 import CommentsList from "../components/CommentsList";
 import UpvotesSection from "../components/UpvotesSection";
+import AddCommentsForm from "../components/AddCommentForm";
 
 const ArticlePage = ({ match }) => {
   const [article, setArticle] = useState(null);
+  const [comments, setComments] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
   const [notFound, setNotFound] = useState(false);
   const { id } = match.params;
@@ -16,6 +18,7 @@ const ArticlePage = ({ match }) => {
       const articleData = await articleService.getArticleAsync(id);
       if (articleData !== undefined) {
         setArticle(articleData);
+        setComments(articleData.comments);
         const related = await articleService.getArticlesFromIdsAsync(articleData.related);
         setRelatedArticles(related);
       } else {
@@ -29,7 +32,6 @@ const ArticlePage = ({ match }) => {
   }
 
   if (article) {
-    console.log(article);
     return (
       <>
         <h1>{article.title}</h1>
@@ -40,8 +42,9 @@ const ArticlePage = ({ match }) => {
             <br />
           </div>
         ))}
-        <CommentsList comments={article.comments} />
-        <h3>Related Articles:</h3>
+        <CommentsList comments={comments} />
+        <AddCommentsForm id={article.id} setComments={setComments} />
+        <h3>Related Articles</h3>
         <ArticlesList articles={relatedArticles} />
       </>
     );

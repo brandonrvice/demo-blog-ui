@@ -1,13 +1,16 @@
 import React from "react";
+import { Card, Badge } from "react-bootstrap";
 
 const CommentsList = ({ comments }) => (
   <>
-    <h3>Comments:</h3>
+    <h3>Comments</h3>
     {comments.map((comment, key) => (
-      <div className="comment" key={key}>
-        <h4>{comment.username}</h4>
-        <p>{comment.text}</p>
-      </div>
+      <Card key={key}>
+        <Card.Body>
+          <div className={"lead"}>{comment.text}</div>
+          <Badge variant="secondary">{comment.username}</Badge>
+        </Card.Body>
+      </Card>
     ))}
   </>
 );

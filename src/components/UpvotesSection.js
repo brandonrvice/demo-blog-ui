@@ -14,16 +14,12 @@ const UpvotesSection = ({ id, upvotesp }) => {
     setUpvotes(upvotesp);
   }, [upvotesp]);
 
-  console.log(id, upvotesp);
   return (
     <div id="upvotes-section">
       <Button variant="secondary" onClick={() => upvoteArticle()}>
         Add Upvote
       </Button>
-
-      <p>
-        <nobr>This article has been upvoted {upvotesd} times</nobr>
-      </p>
+      <p className={"text-info"}>This article has been upvoted {upvotesd} times</p>
     </div>
   );
 };

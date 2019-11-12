@@ -17,6 +17,11 @@ articleService.upvote = async id => {
   return res.data;
 };
 
+articleService.addComment = async (articleId, comment) => {
+  let res = await axios.post(`http://localhost:8000/api/article/${articleId}/comment`, comment);
+  return res.data;
+};
+
 articleService.getArticleAsync = async id => {
   try {
     let res = await axios.get(`http://localhost:8000/api/article/${id}`);
