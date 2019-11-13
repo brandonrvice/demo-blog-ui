@@ -7,7 +7,7 @@ const ArticlesListPage = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await articleService.getArticlesAsync();
+      const data = await articleService.getArticles();
       setArticles(data);
     })();
   }, []);

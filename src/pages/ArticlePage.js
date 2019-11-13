@@ -19,7 +19,9 @@ const ArticlePage = ({ match }) => {
       if (articleData !== undefined) {
         setArticle(articleData);
         setComments(articleData.comments);
-        const related = await articleService.getArticlesFromIdsAsync(articleData.related);
+        const related = await articleService.getArticlesFromIds(
+          articleData.related
+        );
         setRelatedArticles(related);
       } else {
         setNotFound(true);

@@ -4,12 +4,12 @@ const articleService = {};
 const httpServer = "35.166.8.20";
 // const httpServer = "localhost:8000";
 
-articleService.getArticlesAsync = async () => {
+articleService.getArticles = async () => {
   let res = await axios.get(`http://${httpServer}/api/articles`);
   return res.data;
 };
 
-articleService.getArticlesFromIdsAsync = async ids => {
+articleService.getArticlesFromIds = async ids => {
   let res = await axios.post(`http://${httpServer}/api/articles`, ids);
   return res.data;
 };
@@ -20,7 +20,10 @@ articleService.upvote = async id => {
 };
 
 articleService.addComment = async (articleId, comment) => {
-  let res = await axios.post(`http://${httpServer}/api/article/${articleId}/comment`, comment);
+  let res = await axios.post(
+    `http://${httpServer}/api/article/${articleId}/comment`,
+    comment
+  );
   return res.data;
 };
 
