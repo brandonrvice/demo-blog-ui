@@ -2,27 +2,26 @@ import React, { useState } from "react";
 import articleService from "../services/ArticleService";
 import { Form, Button, Card } from "react-bootstrap";
 
-export default function AddCommentForm({ id, setComments }) {
+const AddCommentForm = ({ id, setComments }) => {
   const [validated, setValidated] = useState(false);
   const [username, setUsername] = useState("");
   const [commentText, setCommentText] = useState("");
 
   const handleSubmit = async e => {
     const form = e.currentTarget;
+    e.preventDefault();
+
     if (form.checkValidity() === false) {
-      console.log("invalid comment");
-      e.preventDefault();
       e.stopPropagation();
       setValidated(true);
       return;
     }
 
-    e.preventDefault();
-    const comment = {
+    const { comments } = await articleService.addComment(id, {
       username: username,
       text: commentText
-    };
-    const { comments } = await articleService.addComment(id, comment);
+    });
+
     setComments(comments);
     setValidated(false);
     setUsername("");
@@ -66,4 +65,6 @@ export default function AddCommentForm({ id, setComments }) {
       </Card.Body>
     </Card>
   );
-}
+};
+
+export default AddCommentForm;

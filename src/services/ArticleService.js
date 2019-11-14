@@ -20,10 +20,7 @@ articleService.upvote = async id => {
 };
 
 articleService.addComment = async (articleId, comment) => {
-  let res = await axios.post(
-    `http://${httpServer}/api/article/${articleId}/comment`,
-    comment
-  );
+  let res = await axios.post(`http://${httpServer}/api/article/${articleId}/comment`, comment);
   return res.data;
 };
 
