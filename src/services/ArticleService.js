@@ -1,32 +1,32 @@
 import axios from "axios";
 
 const articleService = {};
-const httpServer = "35.166.8.20";
-// const httpServer = "localhost:8000";
+const httpServer = "https://demo-blog-api.brandonv.io";
+// const httpServer = "http://localhost:8000";
 
 articleService.getArticles = async () => {
-  let res = await axios.get(`http://${httpServer}/api/articles`);
+  let res = await axios.get(`${httpServer}/api/articles`);
   return res.data;
 };
 
 articleService.getArticlesFromIds = async ids => {
-  let res = await axios.post(`http://${httpServer}/api/articles`, ids);
+  let res = await axios.post(`${httpServer}/api/articles`, ids);
   return res.data;
 };
 
 articleService.upvote = async id => {
-  let res = await axios.post(`http://${httpServer}/api/article/${id}/upvote`);
+  let res = await axios.post(`${httpServer}/api/article/${id}/upvote`);
   return res.data;
 };
 
 articleService.addComment = async (articleId, comment) => {
-  let res = await axios.post(`http://${httpServer}/api/article/${articleId}/comment`, comment);
+  let res = await axios.post(`${httpServer}/api/article/${articleId}/comment`, comment);
   return res.data;
 };
 
 articleService.getArticleAsync = async id => {
   try {
-    let res = await axios.get(`http://${httpServer}/api/article/${id}`);
+    let res = await axios.get(`${httpServer}/api/article/${id}`);
     return res.data;
   } catch (err) {
     console.log(err);
