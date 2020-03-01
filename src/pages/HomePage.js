@@ -1,26 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import ArticlesList from "../components/ArticlesList";
+import articleService from "../services/ArticleService";
+import { Link } from "react-router-dom";
+import { Jumbotron, Button } from "react-bootstrap";
 
-const HomePage = () => (
-  <>
-    <h1>Welcome!</h1>
-    <p className={"lead"}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-      non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-    <p className={"lead"}>
-      Velit sed ullamcorper morbi tincidunt ornare massa. Cursus metus aliquam eleifend mi in nulla.
-      Quam viverra orci sagittis eu volutpat odio. Gravida in fermentum et sollicitudin ac orci
-      phasellus. Sollicitudin tempor id eu nisl. Eu scelerisque felis imperdiet proin fermentum leo
-      vel orci porta. Condimentum id venenatis a condimentum vitae sapien pellentesque habitant
-      morbi. Rhoncus dolor purus non enim praesent elementum facilisis leo vel. Fermentum dui
-      faucibus in ornare. Senectus et netus et malesuada fames ac. Elementum facilisis leo vel
-      fringilla est ullamcorper eget nulla. Leo vel orci porta non pulvinar neque laoreet
-      suspendisse. Nibh ipsum consequat nisl vel pretium.
-    </p>
-  </>
-);
+const HomePage = () => {
+  const [articleList, setArticles] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await articleService.getArticles();
+      setArticles(data);
+    })();
+  }, []);
+
+  return (
+    <>
+      <Jumbotron>
+        <h1>Hello, world!</h1>
+        <p>
+          This is a simple hero unit, a simple jumbotron-style component for calling extra attention
+          to featured content or information.
+        </p>
+        <p>
+          <Link to="/about">
+            <Button renderAs="button" variant="primary">
+              <span>Learn more</span>
+            </Button>
+          </Link>
+        </p>
+      </Jumbotron>
+      <ArticlesList articles={articleList} />
+    </>
+  );
+};
 
 export default HomePage;
