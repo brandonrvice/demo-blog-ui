@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const articleService = {};
-const httpServer = "https://demo-blog-api.brandonv.io";
+const httpServer = "https://api.fuzzle.xyz";
 // const httpServer = "http://localhost:8000";
 
 articleService.getArticles = async () => {
