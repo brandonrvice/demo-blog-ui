@@ -9,3 +9,5 @@
 #### API is built using NodeJS running in a docker container on AWS ECS. API endpoint is API Gateway using HTTP API.
 
 #### Database server is MongoDB running on MongoDB Atlas
+
+![Architecture](arch.png?raw=true "Architecture")
