@@ -8,16 +8,12 @@ node {
     }
     stage("APP"){
         stage('build'){
-            dir ('app'){
-                sh "npm install"
-                sh "npm run-script build"                
-            }
+            sh "npm install"
+            sh "npm run-script build"                
         }
-        stage('deploy'){
-            dir ('terraform/app'){
-                sh "aws s3 sync build/ s3://origin.trackerp.xyz --acl public-read"
-                sh 'aws cloudfront create-invalidation --distribution-id E26NHRKWDSAWLX --paths "/*"'
-            }
+        stage('deploy'){            
+            sh "aws s3 sync build/ s3://origin.trackerp.xyz --acl public-read"
+            sh 'aws cloudfront create-invalidation --distribution-id E26NHRKWDSAWLX --paths "/*"'
         }
     }
 }
